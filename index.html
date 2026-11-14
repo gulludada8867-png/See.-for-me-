@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1730">
+<meta name="description" content="SeeForMe – AI-powered visual assistance for the visually impaired.">
+<title>SeeForMe | See the World. With Assistance.</title>
+<style>
+:root{--navy:#0b1730;--navy2:#13244a;--blue:#4f8dff;--blue2:#2f6fe0;--card:#eef2fb;--ink:#14213d;--mute:#5a6785;--line:#d5dcee;--ok:#2e9d62}
+*{box-sizing:border-box}[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,Roboto,sans-serif;color:var(--ink);background:linear-gradient(180deg,#0b1730 0,#16294f 520px,#dfe6f3 900px,#e9eef7 100%);background-attachment:scroll;min-width:320px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.skip{position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:10px;z-index:10}.skip:focus{left:8px;top:8px}
+button{font:inherit;cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}
+:focus-visible{outline:3px solid #ffd166;outline-offset:2px}
+
+/* hero */
+.hero{color:#fff;padding:44px 0 30px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+.logo{display:flex;align-items:center;gap:14px}
+.logo h1{margin:0;font-size:clamp(44px,7vw,76px);font-weight:700;letter-spacing:-2px;line-height:1}
+.logo h1 span{font-weight:700}.logo h1 b{color:var(--blue)}
+.tagline{font-family:'Segoe Script','Brush Script MT',cursive;font-style:italic;font-size:clamp(20px,3vw,28px);margin:10px 0 18px;border-bottom:2px solid var(--blue);display:inline-block;padding-bottom:4px}
+.lede{font-size:18px;line-height:1.6;color:#cdd8ee;max-width:520px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}
+.script{font-family:'Segoe Script','Brush Script MT',cursive;font-style:italic;font-size:clamp(26px,4vw,40px);margin:18px 0 0;color:#fff}.script span{color:#9cc0ff}
+.script.big{color:var(--navy);font-size:clamp(22px,3.5vw,32px)}
+
+.btn{border:0;border-radius:12px;padding:13px 18px;font-weight:700;font-size:15px;text-decoration:none;display:inline-flex;gap:8px;align-items:center;justify-content:center}
+.btn.primary{background:var(--blue2);color:#fff}.btn.primary:hover{background:#2560c9}
+.btn.ghost{background:transparent;color:inherit;border:2px solid currentColor}
+.panel .btn.ghost{color:var(--blue2)}
+.btn.soft{background:#e1eaff;color:#1d3f85;flex:1;min-width:200px}
+.btn.link{background:none;color:var(--blue2);text-decoration:underline;padding:6px 0}
+
+/* phone */
+.phone-wrap{display:flex;justify-content:center}
+.phone{width:290px;background:#0d1b38;border:6px solid #2a3556;border-radius:42px;padding:12px;box-shadow:0 30px 70px #0008;position:relative}
+.notch{width:90px;height:20px;background:#000;border-radius:0 0 14px 14px;position:absolute;top:0;left:50%;transform:translateX(-50%)}
+.status{display:flex;justify-content:space-between;font-size:11px;color:#fff;padding:4px 14px 0}
+.phone-brand{text-align:center;font-weight:700;margin:10px 0 8px;font-size:15px}
+.scene{position:relative;border-radius:16px;overflow:hidden;height:200px}.scene svg{width:100%;height:100%;display:block}
+.sign{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);background:#14284e;color:#fff;border:2px solid #8ab4ff;border-radius:8px;padding:6px 14px;font-weight:700;font-size:20px}
+.sign i{font-style:normal}
+.focus{position:absolute;left:50%;top:38%;width:128px;height:70px;transform:translate(-50%,-50%);border:2px solid #4f8dff;border-radius:10px;box-shadow:0 0 0 2px #4f8dff44;animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 9px #4f8dff00}}
+.bubble{background:#fff;color:var(--ink);border-radius:14px;padding:10px 12px;font-size:13px;margin:-34px 10px 0;position:relative;box-shadow:0 6px 16px #0005}
+.phone-btns{display:flex;justify-content:space-around;margin:14px 0 6px;color:#cfe0ff}
+.phone-btns span{display:flex;flex-direction:column;align-items:center;font-size:20px;width:56px;height:56px;justify-content:center;border-radius:50%;background:#1b2d57}
+.phone-btns small{font-size:9px}.phone-btns .mic{background:var(--blue);color:#fff}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:6px;margin-bottom:46px}
+.card{background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 30px #0b173018}
+.card h2{margin:0 0 10px;font-size:20px;display:flex;gap:10px;align-items:center}.ico{font-size:20px}
+.card p,.card li{color:#3a4766;line-height:1.55;font-size:15.5px}
+.card ul{list-style:none;padding:0;margin:0}.card li{padding:5px 0;display:flex;gap:10px}.card li b{width:24px}
+
+/* app */
+.section-head{text-align:center;margin-bottom:22px}
+.section-head h2,.how h2,.demo h2,.why h2{font-size:clamp(28px,4vw,38px);margin:0 0 6px;color:var(--navy)}
+.section-head p{color:var(--mute);margin:4px 0}
+.mode{display:inline-block;font-size:13px;background:#fff7dd;color:#7a5c00;padding:5px 12px;border-radius:99px;border:1px solid #f0dc9b}.mode.ok{background:#e2f6ea;color:#1c6b40;border-color:#b6e2c6}
+.app-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.panel{background:#fff;border-radius:20px;padding:20px;box-shadow:0 12px 34px #0b173020}
+.panel-title{font-weight:700;font-size:18px;display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.step{background:var(--blue2);color:#fff;border-radius:9px;width:28px;height:28px;display:grid;place-items:center;font-size:14px}
+.icon{margin-left:auto;background:#eef2fb;border:0;border-radius:9px;width:36px;height:36px;font-size:18px;color:var(--blue2)}
+.viewer{background:#0f1c3a;border-radius:14px;min-height:260px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.viewer img,.viewer video{width:100%;max-height:360px;object-fit:contain;display:block}
+.placeholder{text-align:center;color:#a9bbe0;display:flex;flex-direction:column;gap:6px;padding:20px}.placeholder span{font-size:38px}.placeholder strong{color:#fff}.placeholder small{opacity:.8}
+.row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}.row .btn{flex:1}
+.safety{background:#fff8e1;border:1px solid #f1e0a0;color:#6c5513;border-radius:12px;padding:12px;font-size:13.5px;line-height:1.5;margin:10px 0 0}
+.chat .messages{height:340px;overflow-y:auto;background:#f4f7fd;border-radius:14px;padding:14px}
+.welcome{text-align:center;color:var(--mute);padding-top:10px}.welcome strong{color:var(--ink);font-size:17px}
+.chip{display:block;width:100%;margin:8px 0 0;text-align:left;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px;color:#27407d;font-size:14.5px}
+.chip:hover{background:#eaf0ff}
+.msg{max-width:92%;padding:11px 13px;border-radius:14px;margin-bottom:12px;line-height:1.55;font-size:15.5px}
+.msg p{margin:0;white-space:pre-wrap}
+.msg.user{margin-left:auto;background:var(--blue2);color:#fff;border-bottom-right-radius:4px}
+.msg.bot{background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
+.lbl{display:block;font-size:10px;letter-spacing:1px;font-weight:700;opacity:.7;margin-bottom:4px}
+.read{background:none;border:0;color:var(--blue2);font-weight:700;font-size:13px;padding:6px 0 0}
+.thinking{color:var(--mute);font-size:14px;padding:4px 2px}
+.composer{display:flex;gap:8px;margin-top:12px}
+.composer input{flex:1;min-width:0;border:1px solid var(--line);border-radius:12px;padding:12px;font-size:16px}
+.mic{border:0;background:#e1eaff;color:#1d3f85;border-radius:12px;padding:0 14px;font-weight:700}.mic.on{background:#ffe0e0;color:#b32d2d}
+.foot{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px;font-size:12.5px;color:var(--mute)}
+.auto{margin-left:auto;display:flex;gap:6px;align-items:center}.link-sm{background:none;border:0;color:#b32d2d;font-weight:700}
+
+/* sections */
+.how,.demo,.why{margin-top:56px;text-align:center}
+.flow{list-style:none;padding:0;margin:20px 0 0;display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap}
+.flow li:not(.arrow){background:#fff;border-radius:16px;padding:18px 16px;width:170px;box-shadow:0 8px 24px #0b173014;display:flex;flex-direction:column;gap:4px}
+.flow li span{font-size:34px}.flow small{color:var(--mute)}.arrow{font-size:28px;color:var(--blue2)}
+.scenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px;text-align:left}
+.scenarios article{background:#fff;border-radius:16px;padding:18px;box-shadow:0 8px 24px #0b173014}.scenarios p{color:#3a4766;line-height:1.55;margin:8px 0 0}
+.why{background:#fff;border-radius:22px;padding:30px 20px;box-shadow:0 10px 30px #0b173018}
+.why ul{list-style:none;padding:0;margin:14px auto;max-width:560px;text-align:left;font-size:17px;line-height:2;color:#2c3a5c}
+footer{margin-top:50px;padding:22px 0;background:var(--navy);color:#9fb0d6;font-size:13px;text-align:center}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#8a2b2b;color:#fff;padding:12px 18px;border-radius:12px;max-width:90vw;z-index:20;box-shadow:0 8px 30px #0006}
+
+@media(max-width:900px){.hero-grid,.app-grid{grid-template-columns:1fr}.cards,.scenarios{grid-template-columns:1fr}.phone-wrap{order:-1}.arrow{display:none}.hero{padding-top:30px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+
+.keys{max-width:760px;margin:0 auto 18px;background:#fff;border-radius:14px;padding:12px 16px;box-shadow:0 8px 24px #0b173014;font-size:14px}.keys summary{cursor:pointer;font-weight:700;color:#1d3f85}.keys .kr{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.keys select,.keys input{border:1px solid #d5dcee;border-radius:10px;padding:10px;font-size:15px}.keys input{flex:1;min-width:200px}.keys p{color:#5a6785;margin:8px 0 0;font-size:13px}
+</style>
+</head>
+<body>
+<a class="skip" href="#app">Skip to the assistant</a>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="logo" aria-label="SeeForMe">
+        <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true">
+          <path d="M6 20V8h12M46 8h12v12M58 44v12H46M18 56H6V44" fill="none" stroke="#5b9dff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M10 32c6-9 14-14 22-14s16 5 22 14c-6 9-14 14-22 14S16 41 10 32z" fill="#e8f0ff"/>
+          <circle cx="32" cy="32" r="9" fill="#2f6fe0"/><circle cx="32" cy="32" r="4" fill="#0b1730"/><circle cx="35" cy="29" r="2" fill="#fff"/>
+        </svg>
+        <h1>See<span>For</span><b>Me</b></h1>
+      </div>
+      <p class="tagline">See the World. With Assistance.</p>
+      <p class="lede">An AI-powered visual assistance app that helps visually impaired users understand their surroundings through a smartphone camera and simple voice interaction.</p>
+      <div class="cta">
+        <a class="btn primary" href="#app">Try the assistant</a>
+        <a class="btn ghost" href="#how">How it works</a>
+      </div>
+      <p class="script">Just Speak… <span>We'll Tell You!</span></p>
+    </div>
+
+    <div class="phone-wrap" aria-hidden="true">
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="status"><span>9:41</span><span>▂▄▆ ●</span></div>
+        <div class="phone-brand">👁 SeeForMe</div>
+        <div class="scene">
+          <svg viewBox="0 0 300 250" preserveAspectRatio="xMidYMid slice">
+            <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfd8e8"/><stop offset="1" stop-color="#e9efe6"/></linearGradient></defs>
+            <rect width="300" height="250" fill="url(#sky)"/>
+            <path d="M0 120 L120 100 L120 250 L0 250Z" fill="#a98f78"/><path d="M300 110 L190 100 L190 250 L300 250Z" fill="#9c8a76"/>
+            <path d="M118 112 L192 112 L260 250 L50 250Z" fill="#8d8f93"/>
+            <path d="M150 112 L158 112 L170 250 L140 250Z" fill="#c8c8c0"/>
+            <g fill="#3f6b3a"><circle cx="40" cy="70" r="46"/><circle cx="260" cy="64" r="50"/><circle cx="90" cy="40" r="34"/><circle cx="215" cy="36" r="34"/></g>
+          </svg>
+          <div class="sign"><span>Caf<i>é</i> ☕</span></div>
+          <div class="focus"></div>
+        </div>
+        <div class="bubble">🔊 “Cafe on your right, entrance ahead.”</div>
+        <div class="phone-btns"><span>🖼<small>Scan</small></span><span class="mic">🎤<small>Speak</small></span><span>⚙<small>Settings</small></span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="wrap cards" aria-label="About SeeForMe">
+    <article class="card">
+      <h2><span class="ico">💡</span> The Problem</h2>
+      <p>Visually impaired people often struggle to understand their surroundings, read text, and identify objects — especially when assistance is not readily available.</p>
+    </article>
+    <article class="card">
+      <h2><span class="ico">🎯</span> Our Solution</h2>
+      <p>SeeForMe – an AI assistant that captures the world through your phone camera, understands it and helps you via voice feedback.</p>
+    </article>
+    <article class="card features">
+      <h2><span class="ico">✦</span> Key Features</h2>
+      <ul>
+        <li><b>📷</b> Object &amp; scene recognition</li>
+        <li><b>🔤</b> Text reading (signs, documents, labels)</li>
+        <li><b>🔊</b> Natural voice responses</li>
+        <li><b>💬</b> Follow-up questions on the same image</li>
+        <li><b>🎤</b> Easy interaction — voice or text</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="wrap" id="app" aria-labelledby="app-h">
+    <div class="section-head">
+      <h2 id="app-h">Try SeeForMe</h2>
+      <p>Capture or upload a photo, then ask by voice or text. Answers are shown and spoken aloud.</p>
+      <p class="mode" id="mode" role="status">Starting…</p>
+    </div>
+
+    <details class="keys"><summary>Optional: connect an AI key for object and scene recognition</summary>
+      <div class="kr"><select id="provider" aria-label="AI provider"><option value="none">None (free mode)</option><option value="openai">OpenAI</option><option value="anthropic">Anthropic</option></select>
+      <input id="apikey" type="password" placeholder="Paste your own API key" autocomplete="off" aria-label="API key"></div>
+      <p>The key stays in this browser tab only and is sent directly to the provider you choose. Never share a page with your key filled in.</p></details>
+    <div class="app-grid">
+      <div class="panel">
+        <div class="panel-title"><span class="step">1</span> Share your view</div>
+        <div class="viewer" id="viewer">
+          <video id="video" autoplay playsinline muted hidden aria-label="Live camera preview"></video>
+          <img id="preview" alt="Image selected for analysis" hidden>
+          <div class="placeholder" id="placeholder"><span>🖼</span><strong>Your view will appear here</strong><small>Use a clear, well-lit photo</small></div>
+        </div>
+        <div class="row">
+          <button class="btn primary" id="btnCamera">📷 Open camera</button>
+          <button class="btn primary" id="btnCapture" hidden>● Capture photo</button>
+          <button class="btn ghost" id="btnUpload">⬆ Upload image</button>
+          <input type="file" id="file" accept="image/png,image/jpeg,image/webp" hidden>
+        </div>
+        <div class="row">
+          <button class="btn soft" id="btnDescribe" disabled>👁 Describe my surroundings</button>
+          <button class="btn soft" id="btnRead" disabled>🔤 Read text in this image</button>
+        </div>
+        <button class="btn link" id="btnSample">Or load a sample sign to try it</button>
+        <p class="safety">⚠ <b>A helpful companion, not a navigation aid.</b> Always use your mobility aids and trusted assistance to move around safely.</p>
+      </div>
+
+      <div class="panel chat">
+        <div class="panel-title"><span class="step">2</span> Ask SeeForMe
+          <button class="icon" id="btnReset" title="Start over" aria-label="Start over">↺</button></div>
+        <div class="messages" id="messages" aria-live="polite" aria-label="Conversation">
+          <div class="welcome" id="welcome">
+            <strong>What would you like to know?</strong>
+            <p>Add an image, then try:</p>
+            <button class="chip" data-q="What objects are in front of me?">What objects are in front of me?</button>
+            <button class="chip" data-q="Can you read this sign for me?">Can you read this sign for me?</button>
+            <button class="chip" data-q="What does the sign say about the entrance?">What does the sign say about the entrance?</button>
+          </div>
+        </div>
+        <form class="composer" id="form">
+          <input id="q" type="text" placeholder="Type a question…" aria-label="Your question" autocomplete="off">
+          <button type="button" class="mic" id="btnMic" aria-label="Ask by voice">🎤 <span>Speak</span></button>
+          <button class="btn primary" type="submit" id="btnSend">Ask</button>
+        </form>
+        <div class="foot"><span>AI can make mistakes. Verify important information.</span>
+          <label class="auto"><input type="checkbox" id="autoSpeak" checked> Speak answers</label>
+          <button class="link-sm" id="btnStop" hidden>■ Stop speaking</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap how" id="how" aria-labelledby="how-h">
+    <h2 id="how-h">How It Works</h2>
+    <ol class="flow">
+      <li><span>🚶</span><b>User</b><small>Speaks or types</small></li>
+      <li class="arrow" aria-hidden="true">→</li>
+      <li><span>📱</span><b>Camera captures</b><small>Photo or upload</small></li>
+      <li class="arrow" aria-hidden="true">→</li>
+      <li><span>🤖</span><b>AI processes</b><small>Vision + OCR</small></li>
+      <li class="arrow" aria-hidden="true">→</li>
+      <li><span>🔊</span><b>Voice feedback</b><small>Spoken answer</small></li>
+    </ol>
+  </section>
+
+  <section class="wrap demo" aria-labelledby="demo-h">
+    <h2 id="demo-h">Demo Scenarios</h2>
+    <div class="scenarios">
+      <article><b>1 · Object identification</b><p>Capture a table and ask “What objects are placed in front of me?” The app identifies and describes them aloud.</p></article>
+      <article><b>2 · Text reading</b><p>Capture a signboard and ask “Can you read this sign for me?” The text is extracted and read out.</p></article>
+      <article><b>3 · Follow-up</b><p>Ask “What does the sign say about the entrance?” — answered from the same image context.</p></article>
+    </div>
+  </section>
+
+  <section class="wrap why" aria-labelledby="why-h">
+    <h2 id="why-h">⭐ Why It Matters</h2>
+    <ul>
+      <li>✔ Empowers visually impaired individuals to live more independently</li>
+      <li>✔ Enhances safety and confidence in daily life</li>
+      <li>✔ Bridges the gap between technology and accessibility</li>
+    </ul>
+    <p class="script big">Because everyone deserves to see the world.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">© 2026 SeeForMe · Built for accessibility · Prototype for PS04 — not a navigation or safety-critical aid.</div></footer>
+<div class="toast" id="toast" role="alert" hidden></div>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+const state = { file: null, sessionId: '', busy: false, stream: null, url: '' };
+
+function toast(msg) {
+  const t = $('toast'); t.textContent = msg; t.hidden = false;
+  clearTimeout(toast.t); toast.t = setTimeout(() => (t.hidden = true), 5000);
+}
+
+// ---------- Speech output ----------
+function speak(text) {
+  if (!$('autoSpeak').checked || !('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = 0.95;
+  u.onstart = () => ($('btnStop').hidden = false);
+  u.onend = u.onerror = () => ($('btnStop').hidden = true);
+  speechSynthesis.speak(u);
+}
+$('btnStop').onclick = (e) => { e.preventDefault(); speechSynthesis.cancel(); $('btnStop').hidden = true; };
+
+
+// ---------- In-browser engine (no server) ----------
+const sess = { turns: [], ocr: null };
+const SYSTEM_PROMPT = "You are SeeForMe, a calm and careful visual assistant for people with visual impairments. Describe only what is reasonably visible. Answer directly in clear natural language suitable for being read aloud, usually 1-4 sentences. Mention uncertainty. Do not guess identities or exact distances, and never claim a path is safe. For navigation or urgent safety questions, say this prototype cannot reliably assess hazards and advise trusted human help or mobility aids. For text-reading requests, transcribe only legible text and mark unclear parts as uncertain.";
+
+const toB64 = (file) => new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result.split(',')[1]); r.onerror = rej; r.readAsDataURL(file); });
+
+async function ocrText(file) {
+  if (!window.Tesseract) throw new Error('Text recognition engine could not load. Check your internet connection and reload.');
+  const r = await Tesseract.recognize(file, 'eng');
+  return (r.data.text || '').trim();
+}
+const cleanLines = (t) => t.split('\n').map((l) => l.trim().replace(/\.+$/, '')).filter((l) => l.replace(/\W/g, '').length >= 2);
+
+function colourName(r, g, b) {
+  const mx = Math.max(r, g, b), mn = Math.min(r, g, b);
+  if (mx < 50) return 'black'; if (mn > 200) return 'white';
+  if (mx - mn < 25) return mx < 110 ? 'dark grey' : mx < 190 ? 'grey' : 'light grey';
+  if (r >= g && r >= b) return g > 0.55 * r && b < 0.5 * r ? 'orange' : g < 0.6 * r ? 'red' : 'pink';
+  if (g >= r && g >= b) return 'green'; return 'blue';
+}
+async function describeLocally(file) {
+  const bmp = await createImageBitmap(file); const c = document.createElement('canvas'); c.width = c.height = 64;
+  const x = c.getContext('2d'); x.drawImage(bmp, 0, 0, 64, 64); const px = x.getImageData(0, 0, 64, 64).data;
+  const buckets = {}; let lum = 0;
+  for (let i = 0; i < px.length; i += 4) {
+    lum += 0.299 * px[i] + 0.587 * px[i + 1] + 0.114 * px[i + 2];
+    const k = (px[i] >> 6) + ',' + (px[i + 1] >> 6) + ',' + (px[i + 2] >> 6); buckets[k] = (buckets[k] || 0) + 1;
+  }
+  lum /= 4096; const names = [];
+  Object.entries(buckets).sort((a, b) => b[1] - a[1]).forEach(([k]) => { const [r, g, b] = k.split(',').map((v) => v * 64 + 32); const n = colourName(r, g, b); if (!names.includes(n)) names.push(n); });
+  const w = bmp.width, h = bmp.height, shape = w > h * 1.15 ? 'landscape' : h > w * 1.15 ? 'portrait' : 'square';
+  const light = lum > 150 ? 'bright' : lum < 70 ? 'dim' : 'moderately lit';
+  return `This is a ${light} ${shape} photo. The main colours are ${names.slice(0, 3).join(', ')}. I can't identify objects without an AI key, but I can read printed text. Try asking me to read a sign or label.`;
+}
+async function localAnswer(file, question) {
+  const q = question.toLowerCase();
+  if (/\b(read|say|says|sign|text|written|label|notice|menu|word|entrance|exit|open|closed|price)/.test(q)) {
+    if (sess.ocr === null) sess.ocr = await ocrText(file);
+    const lines = cleanLines(sess.ocr);
+    if (!lines.length) return 'I could not find any readable text in this image. Try a closer, clearer, well-lit photo.';
+    const stop = new Set(['what','does','the','say','says','about','sign','this','that','read','can','you','for','me','is','a','of','on','in','it','please','tell']);
+    const keys = (q.match(/[a-z]{3,}/g) || []).filter((k) => !stop.has(k));
+    const hits = lines.filter((l) => keys.some((k) => l.toLowerCase().includes(k)));
+    if (hits.length && keys.length) return 'The text mentions: ' + hits.slice(0, 4).join('. ') + '.';
+    return 'The text reads: ' + lines.slice(0, 12).join('. ') + '.';
+  }
+  return describeLocally(file);
+}
+async function aiAnswer(file, question, provider, key) {
+  const b64 = await toB64(file), mime = file.type;
+  const context = sess.turns.map((t) => `User: ${t.q}\nSeeForMe: ${t.a}`).join('\n');
+  const prompt = (context ? `Previous conversation:\n${context}\n` : '') + 'User question: ' + question;
+  if (provider === 'openai') {
+    const r = await fetch('https://api.openai.com/v1/responses', { method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key },
+      body: JSON.stringify({ model: 'gpt-4.1-mini', instructions: SYSTEM_PROMPT, input: [{ role: 'user', content: [
+        { type: 'input_text', text: prompt }, { type: 'input_image', image_url: `data:${mime};base64,${b64}`, detail: 'high' }] }] }) });
+    const j = await r.json(); if (!r.ok) throw new Error(j.error?.message || 'OpenAI request failed');
+    return j.output_text || j.output.flatMap((o) => o.content || []).map((c) => c.text || '').join('');
+  }
+  const r = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-api-key': key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+    body: JSON.stringify({ model: 'claude-sonnet-4-5', max_tokens: 600, system: SYSTEM_PROMPT, messages: [{ role: 'user', content: [
+      { type: 'image', source: { type: 'base64', media_type: mime, data: b64 } }, { type: 'text', text: prompt }] }] }) });
+  const j = await r.json(); if (!r.ok) throw new Error(j.error?.message || 'Anthropic request failed');
+  return j.content.map((b) => b.text || '').join('');
+}
+async function answerQuestion(file, question) {
+  const provider = $('provider').value, key = $('apikey').value.trim();
+  let answer, demo = true;
+  if (provider !== 'none' && key) { answer = await aiAnswer(file, question, provider, key); demo = false; }
+  else answer = await localAnswer(file, question);
+  sess.turns.push({ q: question, a: answer }); if (sess.turns.length > 12) sess.turns.shift();
+  return { answer, demo_mode: demo };
+}
+
+// ---------- Messages ----------
+function addMsg(role, text, demo) {
+  $('welcome')?.remove();
+  const d = document.createElement('div');
+  d.className = 'msg ' + role;
+  const l = document.createElement('span'); l.className = 'lbl';
+  l.textContent = role === 'user' ? 'YOU' : 'SEEFORME' + (demo ? ' · FREE MODE' : '');
+  const p = document.createElement('p'); p.textContent = text;
+  d.append(l, p);
+  if (role === 'bot') {
+    const b = document.createElement('button'); b.className = 'read'; b.textContent = '🔊 Read aloud';
+    b.onclick = () => { const was = $('autoSpeak').checked; $('autoSpeak').checked = true; speak(text); $('autoSpeak').checked = was; };
+    d.append(b);
+  }
+  $('messages').append(d);
+  $('messages').scrollTop = $('messages').scrollHeight;
+}
+
+// ---------- Image handling ----------
+function setBusy(b) {
+  state.busy = b;
+  const off = b || !state.file;
+  $('btnDescribe').disabled = off; $('btnRead').disabled = off; $('btnSend').disabled = b;
+}
+
+function chooseFile(f) {
+  if (!f) return;
+  if (!['image/jpeg', 'image/png', 'image/webp'].includes(f.type)) return toast('Please choose a JPG, PNG or WEBP image.');
+  if (f.size > 8 * 1024 * 1024) return toast('Please choose an image smaller than 8 MB.');
+  stopCamera();
+  if (state.url) URL.revokeObjectURL(state.url);
+  state.file = f; state.sessionId = ''; sess.turns = []; sess.ocr = null; state.url = URL.createObjectURL(f);
+  $('preview').src = state.url; $('preview').hidden = false; $('placeholder').hidden = true;
+  setBusy(false);
+  const m = $('messages'); m.innerHTML = '';
+  addMsg('bot', 'Image loaded. Tap Speak or type your question.');
+  if ($('autoSpeak').checked) speak('Image loaded. Tap Speak or type your question.');
+}
+
+$('btnUpload').onclick = () => $('file').click();
+$('file').onchange = (e) => { chooseFile(e.target.files[0]); e.target.value = ''; };
+
+$('btnSample').onclick = async () => {
+  const c = document.createElement('canvas'); c.width = 1000; c.height = 700;
+  const g = c.getContext('2d'); g.fillStyle = '#465a50'; g.fillRect(0, 0, 1000, 700);
+  g.fillStyle = '#faf8f0'; g.fillRect(90, 90, 820, 520); g.strokeStyle = '#1e1e1e'; g.lineWidth = 10; g.strokeRect(90, 90, 820, 520);
+  g.textAlign = 'center'; g.textBaseline = 'middle'; g.font = 'bold 64px Arial'; g.fillStyle = '#144632'; g.fillText('CAFE GREEN LEAF', 500, 190);
+  g.font = 'bold 46px Arial'; g.fillStyle = '#1e1e1e'; g.fillText('Open daily 8 AM to 6 PM', 500, 300);
+  g.fillStyle = '#a01e1e'; g.fillText('MAIN ENTRANCE ON THE LEFT', 500, 400);
+  g.font = 'bold 40px Arial'; g.fillStyle = '#1e1e1e'; g.fillText('Step up at the door. No smoking.', 500, 500);
+  const blob = await new Promise((r) => c.toBlob(r, 'image/png'));
+  chooseFile(new File([blob], 'sample-sign.png', { type: 'image/png' }));
+};
+
+async function startCamera() {
+  try {
+    state.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } }, audio: false });
+  } catch { return toast('Camera not available. Check permission, or use Upload image.'); }
+  const v = $('video'); v.srcObject = state.stream; v.hidden = false;
+  $('preview').hidden = true; $('placeholder').hidden = true;
+  $('btnCamera').hidden = true; $('btnCapture').hidden = false;
+}
+function stopCamera() {
+  state.stream?.getTracks().forEach((t) => t.stop()); state.stream = null;
+  $('video').hidden = true; $('btnCamera').hidden = false; $('btnCapture').hidden = true;
+}
+$('btnCamera').onclick = startCamera;
+$('btnCapture').onclick = () => {
+  const v = $('video'); if (!v.videoWidth) return;
+  const c = document.createElement('canvas'); c.width = v.videoWidth; c.height = v.videoHeight;
+  c.getContext('2d').drawImage(v, 0, 0);
+  c.toBlob((b) => b && chooseFile(new File([b], 'capture.jpg', { type: 'image/jpeg' })), 'image/jpeg', 0.88);
+};
+
+// ---------- Ask ----------
+async function ask(q) {
+  q = (q || '').trim();
+  if (!state.file) { toast('First capture or upload an image.'); speak('Please capture or upload an image first.'); return; }
+  if (!q) return;
+  addMsg('user', q); $('q').value = ''; setBusy(true);
+  const th = document.createElement('div'); th.className = 'thinking'; th.textContent = 'Analysing your image…'; $('messages').append(th);
+  try {
+    const data = await answerQuestion(state.file, q);
+    state.sessionId = 'local';
+    th.remove(); addMsg('bot', data.answer, data.demo_mode); speak(data.answer);
+  } catch (e) {
+    th.remove(); toast(e.message); speak('An error occurred while analyzing the image.');
+  } finally { setBusy(false); }
+}
+
+$('form').onsubmit = (e) => { e.preventDefault(); ask($('q').value); };
+$('btnDescribe').onclick = () => ask('Describe the scene and the main objects you can see.');
+$('btnRead').onclick = () => ask('Can you read the text in this image?');
+document.querySelectorAll('.chip').forEach((c) => (c.onclick = () => {
+  $('q').value = c.dataset.q; if (state.file) ask(c.dataset.q); else toast('Add an image first.');
+}));
+
+$('btnReset').onclick = () => {
+  speechSynthesis?.cancel(); stopCamera();
+  state.file = null; state.sessionId = ''; $('preview').hidden = true; $('placeholder').hidden = false;
+  $('messages').innerHTML = ''; $('q').value = ''; setBusy(false);
+  $('messages').innerHTML = '<div class="welcome"><strong>What would you like to know?</strong><p>Add an image to begin.</p></div>';
+};
+
+// ---------- Voice input ----------
+$('btnMic').onclick = () => {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) return toast('Voice input needs Chrome or Edge. You can type your question instead.');
+  const r = new SR(); r.lang = 'en-US'; r.interimResults = false;
+  const btn = $('btnMic');
+  r.onstart = () => { btn.classList.add('on'); btn.querySelector('span').textContent = 'Listening…'; speechSynthesis.cancel(); };
+  r.onend = () => { btn.classList.remove('on'); btn.querySelector('span').textContent = 'Speak'; };
+  r.onerror = () => { toast("Sorry, I didn't catch that. Please try again."); };
+  r.onresult = (e) => { const t = e.results[0][0].transcript; $('q').value = t; ask(t); };
+  r.start();
+};
+
+// ---------- Mode badge ----------
+function updateMode() {
+  const on = $('provider').value !== 'none' && $('apikey').value.trim();
+  $('mode').textContent = on ? 'AI vision connected (' + $('provider').value + ').' : 'Free mode: text reading works in your browser. Add an AI key below for object and scene recognition.';
+  $('mode').classList.toggle('ok', !!on);
+}
+$('provider').onchange = $('apikey').oninput = updateMode; updateMode();
+setBusy(false);
+
+</script>
+</body>
+</html>
